@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  string: 
+  datetime: 2012-03-31 17:13:35
+  string: 
+
+two:
+  string: 
+  datetime: 2012-03-31 17:13:35
+  string: 

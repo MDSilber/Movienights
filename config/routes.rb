@@ -1,5 +1,7 @@
 Movienights::Application.routes.draw do
   
+  resources :events
+
   resources :movies
 
   #setting up an example!
