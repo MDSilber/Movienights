@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  string: 
-  datetime: 2012-03-31
-  string: 
+  title: MyString
+  date: 2012-04-01 19:02:12
+  location: MyString
 
 two:
-  string: 
-  datetime: 2012-03-31
-  string: 
+  title: MyString
+  date: 2012-04-01 19:02:12
+  location: MyString

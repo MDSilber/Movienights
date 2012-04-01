@@ -1,8 +1,18 @@
 Movienights::Application.routes.draw do
   
   resources :events
+  match 'events/new' => 'events#new'
+  match 'events/' => 'events#show'
+  match 'events/:id' => 'events#show'
+  match 'events/:id/edit' => 'events#edit'
+  match 'events/:id/destroy' => 'events#destroy'
 
   resources :movies
+  match 'movies/new' => 'movies#new'
+  match 'movies/' => 'movies#index'
+  match 'movies/:id' => 'movies#show'
+  match 'movies/:id/edit' => 'movies#edit'
+  match 'movies/:id/destroy' => 'movies#destroy'
 
   #setting up an example!
   match 'home' => 'application#home'
