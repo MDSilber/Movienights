@@ -1,5 +1,7 @@
 Movienights::Application.routes.draw do
   
+  resources :users
+
   resources :events
   match 'events/new' => 'events#new'
   match 'events/' => 'events#show'
