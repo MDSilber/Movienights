@@ -1,6 +1,8 @@
 class Movie < ActiveRecord::Base
 
-  has_many :suggestions
+  attr_accessible :title
+
+  has_many :suggestions, :dependent => :destroy
   has_many :events, :through => :suggestions
 
 end
