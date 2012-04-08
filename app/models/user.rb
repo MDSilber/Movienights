@@ -4,8 +4,6 @@ class User < ActiveRecord::Base
   attr_accessible :email
   attr_accessible :password
 
-# has_many :events, :dependent => :destroy
-  
-  validates :email, :uniqueness => { :message => "#{:email} is already taken. Please enter another email address."}
+  validates :email, :uniqueness => { :message => "The %{value} is already taken. Please enter another email address." }
 
 end
