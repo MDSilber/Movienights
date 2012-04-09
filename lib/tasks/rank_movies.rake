@@ -26,7 +26,6 @@ task :rank_movies do
     innercounter = 0
     
     ranks.each do |s|
-      #puts "#{s.match(/\d+/)[0]}"
 
       c = s.scan(/\d+:(.+)/)[0][0]
       
