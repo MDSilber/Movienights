@@ -1,6 +1,15 @@
 class EventsController < ApplicationController
   # GET /events
   # GET /events.json
+
+  before_filter :check_session
+
+  def check_session
+    if session[:user_id] == nil
+      redirect_to "/login"
+    end
+  end
+  
   def index
     @events = Event.all
 
