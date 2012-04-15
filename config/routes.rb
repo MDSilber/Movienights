@@ -3,6 +3,7 @@ Movienights::Application.routes.draw do
   resources :users
 
   resources :events
+  match 'events/:id/rank' => "events#rank"
 
   resources :movies
 
