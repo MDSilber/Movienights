@@ -27,8 +27,10 @@ class UsersController < ApplicationController
     @user = User.new
 
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @user }
+#      if @user.save
+        format.html #{ redirect_to @movie, notice: "User account was created successfully" }
+        format.json { render json: @user }
+#      end
     end
   end
 

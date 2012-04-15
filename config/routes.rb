@@ -9,6 +9,10 @@ Movienights::Application.routes.draw do
   #setting up an example!
   match 'home' => 'application#home'
 
+  match '/sessions/create' => "sessions#create", :via => :post
+  match '/login' => "sessions#new"
+  match '/logout' => "sessions#destroy"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

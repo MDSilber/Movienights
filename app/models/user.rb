@@ -1,9 +1,15 @@
 class User < ActiveRecord::Base
 
-  attr_accessible :name
   attr_accessible :email
-  attr_accessible :password
+  attr_accessible :password_digest,:password
+  has_secure_password
+  validates_presence_of :password, :on => :create
 
   validates :email, :uniqueness => { :message => "The %{value} is already taken. Please enter another email address." }
+  validates_confirmation_of :password#, :if => should_validate_password?
+
+#  def should_validate_password?
+#   updating_password || new_record?
+# end
 
 end
