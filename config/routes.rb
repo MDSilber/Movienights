@@ -4,7 +4,8 @@ Movienights::Application.routes.draw do
 
   resources :events
   match 'events/:id/rank' => "events#rank"
-
+  match 'events/:id/send_ranks' => "events#send_ranks", :as => :send_ranks
+  
   resources :movies
 
   #setting up an example!
