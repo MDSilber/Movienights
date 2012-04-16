@@ -1,0 +1,38 @@
+<h1> Rank movies for this event </h1>
+<p>
+  <b>Title:</b>
+  <%= @event.title %>
+</p>
+
+<p>
+  <b>Date:</b>
+  <%= @event.date %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @event.location %>
+</p>
+
+<%= form_for(@event, :url => send_ranks_path ) do |f| %>
+<p>
+  <b>How interested are you in each of these movies?</b>
+  <ul>
+  <% @suggestions.each do |suggestion| %>
+    <% @count = @suggestions.count %>
+    <li><%= suggestion.movie.title %></li>
+    <select>
+    <% (1...@suggestions.count+1).each do |i| %>
+      <option><%= i %></option>
+    <% end %>
+    </select>
+  <% end %>
+  </ul>
+</p>
+
+  <div class="actions">
+    <%= f.submit "Send Ranks" %>
+  </div>
+<% end %>
+
+<%= link_to 'Back', events_path %>

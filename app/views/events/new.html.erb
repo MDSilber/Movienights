@@ -2,12 +2,4 @@
 
 <%= render 'form' %>
 
-<div class="field">
-  Suggested Movies:<br/><br/>
-  <% Movie.all.each do |movie| %>
-    <%= movie.title %>
-    <%= check_box_tag :movie_ids, movie.id, @event.movies.include?(movie), :name => 'event[movie_ids][]'%><br/>
-  <% end %>
-</div>
-
 <%= link_to 'Back', events_path %>

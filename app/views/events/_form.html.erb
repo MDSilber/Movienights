@@ -15,6 +15,15 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
+  
+  <div class="field">
+    <br/>Suggested Movies:<br/><br/>
+    <% Movie.all.each do |movie| %>
+      <%= movie.title %>
+      <%= check_box_tag :movie_ids, movie.id, @event.movies.include?(movie), :name => 'event[movie_ids][]'%><br/>
+    <% end %>
+  </div>
+  
   <div class="field">
     <%= f.label :date %><br />
     <%= f.datetime_select :date %>
@@ -23,6 +32,8 @@
     <%= f.label :location %><br />
     <%= f.text_field :location %>
   </div>
+
+
   <div class="actions">
     <%= f.submit %>
   </div>

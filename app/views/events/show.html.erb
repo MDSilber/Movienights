@@ -15,6 +15,14 @@
   <%= @event.location %>
 </p>
 
+<p>
+  <b>Movies:</b>
+  <ul>
+  <% @suggestions.each do |suggestion| %>
+    <li><%= suggestion.movie.title %></li>
+  <% end %>
+  </ul>
+</p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

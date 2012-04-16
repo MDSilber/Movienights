@@ -23,7 +23,9 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
-
+    
+    @suggestions = Suggestion.find_all_by_event_id(@event.id)
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @event }
@@ -49,8 +51,15 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(params[:event])
 
+    @movies = params[:event][:movie_ids]
+    params[:event].delete(:movie_ids)
+    @event = Event.new(params[:event])
+    
+    @movies.each do |movie|
+      @event.suggestions.build(:movie_id => movie)
+    end
+      
     respond_to do |format|
       if @event.save
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -92,10 +101,18 @@ class EventsController < ApplicationController
 
   def rank
     @event = Event.find(params[:id])
-  
+    @suggestions = Suggestion.find_all_by_event_id(@event.id)
+
     respond_to do |format|
     format.html
     format.json { render json: @event }
+    end
+  end
+
+  def send_ranks
+    respond_to do |format|
+    format.html { redirect_to events_url }
+    format.json { head :no_content }
     end
   end
 
