@@ -2,8 +2,11 @@ Movienights::Application.routes.draw do
   
   resources :users
 
-  resources :events
-  match 'events/:id/rank' => "events#rank"
+  resources :events do
+    get 'rank', :on => :member
+    get 'send_rank', :on => :member
+  end
+
   match 'events/:id/send_ranks' => "events#send_ranks", :as => :send_ranks
   
   resources :movies
@@ -14,6 +17,9 @@ Movienights::Application.routes.draw do
   match '/sessions/create' => "sessions#create", :via => :post
   match '/login' => "sessions#new"
   match '/logout' => "sessions#destroy"
+
+  #get 'rank', :on => :member
+  #post 'send_ranks', :on => :member
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
