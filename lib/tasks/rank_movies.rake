@@ -49,6 +49,7 @@ task :rank_movies do
   ranked_movies.each do |movie|
     puts "#{counter}. #{movie.title}"
     counter = counter + 1
+    break if counter == 4
   end
 
 end
