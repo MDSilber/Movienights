@@ -3,12 +3,19 @@ class UsersController < ApplicationController
   # GET /users.json
 
   before_filter :check_session, :except => :new
+  before_filter :check_logged_in, :only => :new
 
   #layout 'application' 
 
   def check_session
     if session[:user_id] == nil
       redirect_to "/login"
+    end
+  end
+
+  def check_logged_in
+    if session[:user_id]
+      redirect_to "/"
     end
   end
 
