@@ -27,6 +27,7 @@
 
 <%= semantic_form_for(@user) do |f| %>
   <%= f.inputs do %>
+    <%= f.input :name, :as => :wrapped_string %>
     <%= f.input :email, :as => :wrapped_string %>
     <%= f.input :password, :as => :wrapped_password %>
     <%= f.input :password_confirmation, :as => :wrapped_password %>
