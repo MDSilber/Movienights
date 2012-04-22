@@ -16,7 +16,7 @@
 
 <%= form_for(@event, :url => send_ranks_path ) do |f| %>
 <p>
-  <b>How interested are you in each of these movies?</b>
+  <b>Please rank your preferences for the following movie choices:</b>
   <ul>
   <% @suggestions.each do |suggestion| %>
     <% @count = @suggestions.count %>
@@ -36,3 +36,4 @@
 <% end %>
 
 <%= link_to 'Back', events_path %>
+<%#= link_to 'Back', show_event_path(@event) %>
