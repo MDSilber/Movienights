@@ -1,14 +1,23 @@
-<header style="float:right;" class="navbar navbar-fixed-top">
- <div class="navbar-inner">
-  <div class="container">
+<style>
+#navbar{
+  background-color:#000000
+}
+#container{
+  color:#ffffff
+}
+</style>
+
+<header style="float:right;" class="navbar navbar-fixed-top" id="navbar">
+ <div class="navbar-inner" id="navbar-inner">
+  <div class="container" id="container">
    <%= link_to "Movies", "/movies" %>
-    <%= link_to "Events", "/events" %>
-    <% if current_user %>
+   <%= link_to "Events", "/events" %>
+   <% if current_user %>
      <%= current_user.email %>
      <%= link_to "Sign out", "/logout" %>
-    <% else %>
+   <% else %>
      <%= link_to "Sign in", "/login" %>
-    <% end %>
+   <% end %>
   </div>
  </div>
 </header>
