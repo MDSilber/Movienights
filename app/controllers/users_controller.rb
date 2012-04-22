@@ -2,8 +2,9 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
 
-
   before_filter :check_session, :except => :new
+
+  #layout 'application' 
 
   def check_session
     if session[:user_id] == nil

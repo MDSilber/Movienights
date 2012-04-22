@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html>
 <head>
   <title>Movienights</title>
@@ -7,8 +7,20 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <header style="float:right;" class="navbar navbar-fixed-top">
+   <div class="navbar-inner">
+      <div class="container">
+        <%= link_to "Movies", "/movies" %>
+        <%= link_to "Events", "/events" %>
+        <% if current_user %>
+        <%= current_user.email %>
+        <%= link_to "Sign out", "/logout" %>
+        <% else %>
+        <%= link_to "Sign in", "/login" %>
+        <% end %>
+      </div>
+    </div>
+  </header>
+  <%= yield %>
 </body>
 </html>

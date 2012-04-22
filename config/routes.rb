@@ -7,6 +7,7 @@ Movienights::Application.routes.draw do
     get 'send_rank', :on => :member
   end
 
+  #Why is this redundant?
   match 'events/:id/send_ranks' => "events#send_ranks", :as => :send_ranks
   
   resources :movies
