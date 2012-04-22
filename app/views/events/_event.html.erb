@@ -1,0 +1,5 @@
+<ul>
+<% @events.each do |event| %>
+    <li> <%= event.title %> <%=event.date %> <%= event.location %> <%= link_to 'Show', event%> <%= link_to 'Edit', edit_event_path(event) %> <%= link_to 'Destroy', event, confirm:  'Are you sure?', method: :delete %></li>
+<% end %>
+</ul>
