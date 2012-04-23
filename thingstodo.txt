@@ -1,0 +1,5 @@
+Check if login redirects if someone is already signed in
+Don't let people edit anything but their own accounts
+Don't let people create an account if they're logged in
+Don't let people see the list of users (unless they have admin status?)
+
