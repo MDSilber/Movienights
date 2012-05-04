@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
 
-  before_filter :check_role, :only => [:update, :destroy]
+  before_filter :check_role, :only => [:index, :destroy]
   before_filter :check_session, :except => :new
   before_filter :check_logged_in, :only => :new
 
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_id])
 
     if @user.role == "User"
-      redirect_to "/movies"
+      redirect_to "/events"
     end
   end
 
