@@ -12,12 +12,14 @@
 
 <% @events.each do |event| %>
   <tr>
-    <td><%= event.title %></td>
+    <td><%= link_to event.title, event %></td>
     <td><%= event.date %></td>
     <td><%= event.location %></td>
     <td><%= link_to 'Show', event %></td>
-    <td><%= link_to 'Edit', edit_event_path(event) %></td>
-    <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
+    <% if User.find(session[:user_id]).role == "Admin" %>
+      <td><%= link_to 'Edit', edit_event_path(event) %></td>
+      <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 
