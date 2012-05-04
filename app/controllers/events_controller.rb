@@ -8,11 +8,9 @@ class EventsController < ApplicationController
   def check_role
     @user = User.find(session[:user_id])
     
-      if @user.role == "User"
-          flash[:notice] = 'You do not have proper authorization for this action'
-          flash.keep(:notice)
-          redirect_to events_path
-      end
+    if @user.role == "User"
+      redirect_to events_path
+    end
   end
 
   def check_session

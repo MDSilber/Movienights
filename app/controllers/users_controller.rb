@@ -2,10 +2,19 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
 
+  before_filter :check_role, :only => [:update, :destroy]
   before_filter :check_session, :except => :new
   before_filter :check_logged_in, :only => :new
 
   #layout 'application' 
+  
+  def check_role
+    @user = User.find(session[:user_id])
+
+    if @user.role == "User"
+      redirect_to "/movies"
+    end
+  end
 
   def check_session
     if session[:user_id] == nil

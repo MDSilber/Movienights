@@ -10,10 +10,6 @@
     <th></th>
   </tr>
 
-<% if flash[:notice] %>
-  <div id="notice"><%= flash[:notice] %></div>
-<% end %>
-
 <% @events.each do |event| %>
   <tr>
     <td><%= event.title %></td>
