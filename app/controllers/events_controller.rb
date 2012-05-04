@@ -2,7 +2,18 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
 
+  before_filter :check_role, :only => [:new, :create, :update, :destroy]
   before_filter :check_session
+
+  def check_role
+    @user = User.find(session[:user_id])
+    
+      if @user.role == "User"
+          flash[:notice] = 'You do not have proper authorization for this action'
+          flash.keep(:notice)
+          redirect_to events_path
+      end
+  end
 
   def check_session
     if session[:user_id] == nil
@@ -56,8 +67,10 @@ class EventsController < ApplicationController
     params[:event].delete(:movie_ids)
     @event = Event.new(params[:event])
     
-    @movies.each do |movie|
-      @event.suggestions.build(:movie_id => movie)
+    if @movies
+      @movies.each do |movie|
+        @event.suggestions.build(:movie_id => movie)
+      end
     end
       
     respond_to do |format|
