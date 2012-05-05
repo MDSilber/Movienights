@@ -5,4 +5,7 @@ class Suggestion< ActiveRecord::Base
   belongs_to :event
   belongs_to :movie
   
+  has_many :rankings, :dependent => :destroy
+  has_many :users, :through => :suggestions
+  
 end

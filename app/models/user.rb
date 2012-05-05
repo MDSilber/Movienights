@@ -15,4 +15,7 @@ class User < ActiveRecord::Base
   has_many :invitations, :dependent => :destroy
   has_many :events, :through => :invitations
 
+  has_many :rankings, :dependent => :destroy
+  has_many :suggestions, :through => :rankings
+
 end
