@@ -1,3 +1,10 @@
+<script>
+  $(function() {
+      $( "#sortable" ).sortable();
+      $( "#sortable" ).disableSelection();
+  });
+</script>
+
 <h1> Rank movies for this event </h1>
 <p>
   <b>Title:</b>
@@ -16,18 +23,17 @@
 
 <%= form_for(@event, :url => send_ranks_path ) do |f| %>
 <p>
-  <b>Please rank your preferences for the following movie choices:</b>
-  <ul>
+  <b>Please rank your preferences for the following movie choices by dragging to reorder:</b>
+  <ol id="sortable" style="list-style-type:decimal;">
+  
   <% @suggestions.each do |suggestion| %>
-    <% @count = @suggestions.count %>
-    <li><%= suggestion.movie.title %></li>
-    <select>
-    <% (1...@suggestions.count+1).each do |i| %>
-      <option><%= i %></option>
-    <% end %>
-    </select>
+    
+    
+    <li class="ui-state-default"><span data-id="<%= suggestion.movie.id %>" class="ui-icon ui-icon-arrowthick-2-n-s"></span><%= suggestion.movie.title %></li>
+    
   <% end %>
-  </ul>
+  
+  </ol>
 </p>
 
   <div class="actions">
