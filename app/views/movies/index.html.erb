@@ -10,10 +10,13 @@
 
 <% @movies.each do |movie| %>
   <tr>
-    <td><%= movie.title %></td>
-    <td><%= link_to 'Show', movie %></td>
-    <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-    <td><%= link_to 'Destroy', movie, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to movie.title, movie %></td>
+
+    <% if User.find(session[:user_id]).role == "Admin" %>
+      <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+      <td><%= link_to 'Destroy', movie, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
+
   </tr>
 <% end %>
 </table>

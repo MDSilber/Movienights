@@ -25,5 +25,7 @@
 </p>
 
 <%= link_to 'Rank Movies', rank_event_path(@event) %> |
-<%= link_to 'Edit', edit_event_path(@event) %> |
+<% if User.find(session[:user_id]).role == "Admin" %>
+  <%= link_to 'Edit', edit_event_path(@event) %> |
+<% end %>
 <%= link_to 'Back', events_path %>

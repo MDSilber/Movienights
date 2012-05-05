@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
 
-  before_filter :check_role, :only => [:update, :destroy]
+  before_filter :check_role, :only => [:update, :edit, :destroy]
   before_filter :check_session
 
   def check_role

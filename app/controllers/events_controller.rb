@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
 
-  before_filter :check_role, :only => [:new, :create, :update, :destroy]
+  before_filter :check_role, :only => [:new, :create, :edit, :update, :destroy]
   before_filter :check_session
 
   def check_role
