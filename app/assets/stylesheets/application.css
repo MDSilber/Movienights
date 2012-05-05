@@ -14,3 +14,7 @@
 
 *= require_formtastic
 *= require_forms
+
+body{
+  background-color: #969395;
+}

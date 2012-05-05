@@ -12,4 +12,7 @@ class User < ActiveRecord::Base
 #   updating_password || new_record?
 # end
 
+  has_many :invitations, :dependent => :destroy
+  has_many :events, :through => :invitations
+
 end
