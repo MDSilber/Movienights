@@ -11,9 +11,12 @@
     <% end %>
   <% end %>
 
+  <% i = 1 %>
   <% @movies.each do |movie| %>
     <% if !suggested_movies.include?movie.id %>
-      <input type="checkbox"><%= movie.title %></input>
+      <li><input type="checkbox" name="checkedmovie<%= movie.id %>"><%=
+      movie.title %></input></li>
+      <% i = i + 1 %>
     <% end %>
   <% end %>
   

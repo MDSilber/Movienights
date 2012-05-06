@@ -140,6 +140,22 @@ class EventsController < ApplicationController
 
   def send_suggestions
     @event = Event.find(params[:id])
+    puts params
+    
+    params.each do |key, value|
+      
+      if key.include?("checkedmovie")
+        
+        s = Suggestion.new
+        s.user_id = session[:user_id]
+        s.event_id = @event.id
+        
+        s.movie_id = key.gsub("checkedmovie","").to_i
+        s.save
+
+      end
+
+    end
 
     respond_to do |format|
       format.html { redirect_to "/events/#{@event.id}" }

@@ -4,9 +4,9 @@ Movienights::Application.routes.draw do
 
   resources :events do
     get 'rank', :on => :member
-    get 'send_rank', :on => :member
+    post 'send_rank', :on => :member
     get 'suggestions', :on => :member
-    get 'send_suggestions', :on => :member
+    post 'send_suggestions', :on => :member
   end
 
   match 'events/:id/send_ranks' => "events#send_ranks", :as => :send_ranks
