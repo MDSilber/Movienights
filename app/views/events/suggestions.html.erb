@@ -1,0 +1,14 @@
+<h1>Suggest movies for this event</h1>
+
+<% suggested_movies = [] %>
+<% @suggestions.each do |suggestion| %>
+  <% if suggestion.event_id == @event.id %>
+    <% suggested_movies[suggested_movies.length] = suggestion.movie_id %>
+  <% end %>
+<% end %>
+
+<% @movies.each do |movie| %>
+  <% if !suggested_movies.include?movie.id %>
+    <li><%= movie.title %></li>
+  <% end %>
+<% end %>
