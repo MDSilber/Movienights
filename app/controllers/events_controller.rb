@@ -127,4 +127,24 @@ class EventsController < ApplicationController
     end
   end
 
+  def suggestions
+    @event = Event.find(params[:id])
+    @suggestions = Suggestion.find_all_by_event_id(@event.id)
+    @movies = Movie.find(:all)
+    
+    respond_to do |format|
+      format.html #{ redirect_to "/events/#{@event.id}/suggestions" }
+      format.json { head :no_content }
+    end
+  end
+
+  def send_suggestions
+    @event = Event.find(params[:id])
+
+    respond_to do |format|
+      format.html { redirect_to "/events/#{@event.id}" }
+      format.json { head :no_content }
+    end
+  end
+
 end

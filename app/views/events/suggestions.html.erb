@@ -1,14 +1,26 @@
 <h1>Suggest movies for this event</h1>
 
-<% suggested_movies = [] %>
-<% @suggestions.each do |suggestion| %>
-  <% if suggestion.event_id == @event.id %>
-    <% suggested_movies[suggested_movies.length] = suggestion.movie_id %>
-  <% end %>
-<% end %>
+<p>Check off movies you want to suggest</p>
 
-<% @movies.each do |movie| %>
-  <% if !suggested_movies.include?movie.id %>
-    <li><%= movie.title %></li>
+<%= form_for(@event, :url => send_suggestions_path ) do |f| %>
+
+  <% suggested_movies = [] %>
+  <% @suggestions.each do |suggestion| %>
+    <% if suggestion.event_id == @event.id %>
+      <% suggested_movies[suggested_movies.length] = suggestion.movie_id %>
+    <% end %>
   <% end %>
+
+  <% @movies.each do |movie| %>
+    <% if !suggested_movies.include?movie.id %>
+      <input type="checkbox"><%= movie.title %></input>
+    <% end %>
+  <% end %>
+  
+  <br>
+  <br>
+
+  <div class="actions">
+    <%= f.submit "Send Suggestions" %>
+  </div>
 <% end %>

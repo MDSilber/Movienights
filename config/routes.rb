@@ -5,10 +5,12 @@ Movienights::Application.routes.draw do
   resources :events do
     get 'rank', :on => :member
     get 'send_rank', :on => :member
+    get 'suggestions', :on => :member
+    get 'send_suggestions', :on => :member
   end
 
-  #Why is this redundant?
   match 'events/:id/send_ranks' => "events#send_ranks", :as => :send_ranks
+  match 'events/:id/send_suggestions' => "events#send_suggestions", :as => :send_suggestions
   
   resources :movies
 
