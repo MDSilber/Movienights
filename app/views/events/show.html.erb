@@ -16,7 +16,18 @@
 </p>
 
 <p>
-  <b>Movies:</b>
+  <b>Top Three Movies:</b>
+  <ol>
+    <% top_movies = @event.get_top_three %>
+    <% top_movies.each do |m| %>
+      <%# u = User.find_by_id(Suggestion.where(:movie_id => m.id, :event_id => @event.id).first.user_id) %>
+      <li style="font-style:italic;"><%= m %></li>
+    <% end %>
+  </ol>
+</p>
+
+<p>
+  <b>All Suggested Movies:</b>
   <ul>
   <% @suggestions.each do |suggestion| %>
     <% u = User.find_by_id(suggestion.user_id) %>
