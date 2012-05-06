@@ -129,9 +129,23 @@ class EventsController < ApplicationController
     params.each do |key,value|
       
       if key.include?("rankedmovie")
-        r = Ranking.new
-        r.user_id = session[:user_id]
-        r.suggestion_id = Suggestion.where(:user_id => session[:user_id], :event_id => @event.id)
+        s = Suggestion.where(:user_id => session[:user_id], :event_id => @event.id, :movie_id => key.gsub("rankedmovie","")).first
+        
+        puts "=============================="
+        puts s
+        puts s.event_id
+        puts s.movie_id
+        puts s.id
+        puts "=============================="
+
+        r = nil
+
+        if !(r = Ranking.where(:user_id => session[:user_id], :suggestion_id => s.id).first)
+          r = Ranking.new
+          r.user_id = session[:user_id]
+          r.suggestion_id = s.id
+        end
+        
         r.value = i
         r.save
         i = i + 1
@@ -139,8 +153,8 @@ class EventsController < ApplicationController
     end
 
     respond_to do |format|
-    format.html { redirect_to events_url }
-    format.json { head :no_content }
+      format.html { redirect_to "/events/#{@event.id}" }
+      format.json { head :no_content }
     end
   end
 
