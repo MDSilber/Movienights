@@ -28,9 +28,9 @@
   
   <% @suggestions.each do |suggestion| %>
     
-    
-    <li class="ui-state-default"><span data-id="<%= suggestion.movie.id %>" class="ui-icon ui-icon-arrowthick-2-n-s"></span><%= suggestion.movie.title %></li>
-    
+    <% i = 1 %>
+    <li class="ui-state-default"><input name="rankedmovie<%= suggestion.movie.id %>" type="hidden" /><span data-id="<%= suggestion.movie.id %>" class="ui-icon ui-icon-arrowthick-2-n-s"></span><%= suggestion.movie.title %></li>
+    <% i = i + 1 %>
   <% end %>
   
   </ol>
@@ -41,5 +41,4 @@
   </div>
 <% end %>
 
-<%= link_to 'Back', events_path %>
-<%#= link_to 'Back', show_event_path(@event) %>
+<%= link_to 'Back', event_path(@event) %>

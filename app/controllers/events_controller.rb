@@ -121,6 +121,23 @@ class EventsController < ApplicationController
   end
 
   def send_ranks
+
+    @event = Event.find(params[:id])
+
+    i = 1
+
+    params.each do |key,value|
+      
+      if key.include?("rankedmovie")
+        r = Ranking.new
+        r.user_id = session[:user_id]
+        r.suggestion_id = Suggestion.where(:user_id => session[:user_id], :event_id => @event.id)
+        r.value = i
+        r.save
+        i = i + 1
+      end
+    end
+
     respond_to do |format|
     format.html { redirect_to events_url }
     format.json { head :no_content }
@@ -140,19 +157,15 @@ class EventsController < ApplicationController
 
   def send_suggestions
     @event = Event.find(params[:id])
-    puts params
     
     params.each do |key, value|
       
       if key.include?("checkedmovie")
-        
         s = Suggestion.new
         s.user_id = session[:user_id]
         s.event_id = @event.id
-        
         s.movie_id = key.gsub("checkedmovie","").to_i
         s.save
-
       end
 
     end
