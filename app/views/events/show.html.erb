@@ -19,7 +19,8 @@
   <b>Movies:</b>
   <ul>
   <% @suggestions.each do |suggestion| %>
-    <li><%= suggestion.movie.title %></li>
+    <% u = User.find_by_id(suggestion.user_id) %>
+    <li><span style="font-style:italic;"><%= suggestion.movie.title %></span>, suggested by <%= u.name %></li>
   <% end %>
   </ul>
 </p>
