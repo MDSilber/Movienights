@@ -33,6 +33,10 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     
+    if !Invitation.where(:event_id => @event.id, :user_id => session[:user_id]).first 
+      redirect_to events_path and return
+    end
+
     @suggestions = Suggestion.find_all_by_event_id(@event.id)
     
     respond_to do |format|
