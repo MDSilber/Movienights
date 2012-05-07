@@ -24,6 +24,7 @@ Movienights::Application.routes.draw do
   match '/login' => "sessions#new"
   match '/logout' => "sessions#destroy"
 
+  root :to => "events#index"
   #get 'rank', :on => :member
   #post 'send_ranks', :on => :member
 
