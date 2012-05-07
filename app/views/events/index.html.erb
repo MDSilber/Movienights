@@ -3,5 +3,7 @@
 <%= render "event" %>
 <br />
 
-<%= link_to 'New Event', new_event_path %>
+<% if User.find(session[:user_id]).role == "Admin" %>
+  <%= link_to 'New Event', new_event_path %>
+<% end %>
 <br />

@@ -7,11 +7,14 @@ Movienights::Application.routes.draw do
     post 'send_rank', :on => :member
     get 'suggestions', :on => :member
     post 'send_suggestions', :on => :member
+    get 'invite', :on => :member
+    post 'send_invitations', :on => :member
   end
 
   match 'events/:id/send_ranks' => "events#send_ranks", :as => :send_ranks
   match 'events/:id/send_suggestions' => "events#send_suggestions", :as => :send_suggestions
-  
+  match 'events/:id/send_invitations' => "events#send_invitations", :as =>:send_invitations
+
   resources :movies
 
   #setting up an example!

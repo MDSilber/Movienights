@@ -1,4 +1,4 @@
-class Invitation> ActiveRecord::Base
+class Invitation < ActiveRecord::Base
   
   attr_accessible :user_id, :event_id
 

@@ -1,12 +1,26 @@
 <div>Title Date Location </div>
+
+<% events = Array.new %>
+
 <% @events.each do |event| %>
-    <div> 
-      <%= link_to event.title, event %> 
-      <%= event.date %> 
-      <%= event.location %> 
-      <% if User.find(session[:user_id]).role == "Admin" %>
-        <%= link_to 'Edit', edit_event_path(event) %> 
-        <%= link_to 'Destroy', event, confirm:  'Are you sure?', method: :delete %>
+    <% if Invitation.where(:event_id => event.id, :user_id => session[:user_id]).first or User.find(session[:user_id]).role == "Admin"%>
+      <div> 
+        <%= link_to event.title, event %> 
+        <%= event.date %> 
+        <%= event.location %> 
+        <% events.push(event) %>
+        <% if User.find(session[:user_id]).role == "Admin" %>
+          <%= link_to 'Edit', edit_event_path(event) %> 
+          <%= link_to 'Destroy', event, confirm:  'Are you sure?', method: :delete %>
+        <% end %>
       <% end %>
     </div>
+<% end %>
+
+<% if events.length == 0 %>
+  <% if User.find(session[:user_id]).role != "Admin"%>
+    <div>You are not currently invited to any events</div>
+  <% else %>
+    <div>There are no events stored in the database</div>
+  <% end %>
 <% end %>

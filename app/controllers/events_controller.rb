@@ -164,7 +164,7 @@ class EventsController < ApplicationController
     @movies = Movie.find(:all)
     
     respond_to do |format|
-      format.html #{ redirect_to "/events/#{@event.id}/suggestions" }
+      format.html
       format.json { head :no_content }
     end
   end
@@ -182,6 +182,34 @@ class EventsController < ApplicationController
         s.save
       end
 
+    end
+
+    respond_to do |format|
+      format.html { redirect_to "/events/#{@event.id}" }
+      format.json { head :no_content }
+    end
+  end
+  
+  def invite
+    @event = Event.find(params[:id])
+    @users = User.find(:all) - @event.users
+    
+    respond_to do |format|
+      format.html
+      format.json { head :no_content }
+    end
+  end
+
+  def send_invitations
+    @event = Event.find(params[:id])
+    
+    params.each do |key, value|
+      if key.include?("checkeduser")
+        i = Invitation.new
+        i.event_id = @event.id
+        i.user_id = key.gsub("checkeduser","")
+        i.save
+      end
     end
 
     respond_to do |format|
