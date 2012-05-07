@@ -33,7 +33,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     
-    if !Invitation.where(:event_id => @event.id, :user_id => session[:user_id]).first 
+    if !Invitation.where(:event_id => @event.id, :user_id => session[:user_id]).first and User.find(session[:user_id]).role != "Admin"
       redirect_to events_path and return
     end
 
